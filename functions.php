@@ -14,3 +14,9 @@ function urlIs($value){
   return $_SERVER["REQUEST_URI"] === $value;
 }
 
+//authorise the user to see a post
+function authorize($condition, $status = Response::FORBIDDEN){
+  if(!$condition){
+    abort($status);
+  }
+}
