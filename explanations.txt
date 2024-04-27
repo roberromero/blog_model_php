@@ -1,0 +1,8 @@
+MYSQL
+
+To pass params in the url we can add ":param" in a string
+
+
+PHP
+
+<?= $variable ?> is equal to <?php echo $variable ?>
