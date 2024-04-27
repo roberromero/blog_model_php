@@ -7,6 +7,7 @@ $routes = [
   '/about' => '/blog_model_php/index.php/about',
   '/posts'=> '/blog_model_php/index.php/posts',
   '/post'=> '/blog_model_php/index.php/post',
+  '/posts-create'=>'/blog_model_php/index.php/posts-create'
 ];
 
 //parse_url function to discard queries "?asas"

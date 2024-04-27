@@ -23,6 +23,7 @@ private $statement;
 
   // Method to execute a query
   public function query($sql, $param = []) {
+
       try {
           $this->statement = $this->connection->prepare($sql);
           $this->statement->execute($param);
@@ -32,15 +33,19 @@ private $statement;
       } catch(PDOException $e) {
           echo "Query failed: " . $e->getMessage();
       }
+      
   }
 
   public function all(){
+
     return $this->statement->fetchAll();
     
   }
 
   public function find(){
+
     return $this->statement->fetch();
+
   }
 
   public function findOrFail(){
