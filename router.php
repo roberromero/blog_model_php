@@ -1,14 +1,6 @@
 <?php
-//associative array in PHP
-$routes = [
-  '/' => '/blog_model_php/',
-  '/index' => '/blog_model_php/index.php/index',
-  '/contact' => '/blog_model_php/index.php/contact',
-  '/about' => '/blog_model_php/index.php/about',
-  '/posts'=> '/blog_model_php/index.php/posts',
-  '/post'=> '/blog_model_php/index.php/post',
-  '/posts-create'=>'/blog_model_php/index.php/posts-create'
-];
+$routes = require('routes.php');
+
 
 //parse_url function to discard queries "?asas"
 $uri = parse_url($_SERVER["REQUEST_URI"])['path'];
