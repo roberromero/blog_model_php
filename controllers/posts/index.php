@@ -9,4 +9,4 @@ $database = new Database($config['database']);
 $sql = "SELECT * FROM posts";
 $posts = $database->query($sql)->all();
 
-require('views/posts.view.php');
+require('views/posts/index.view.php');

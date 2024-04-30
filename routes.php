@@ -6,7 +6,7 @@ return [
   '/index' => '/blog_model_php/index.php/index',
   '/contact' => '/blog_model_php/index.php/contact',
   '/about' => '/blog_model_php/index.php/about',
-  '/posts'=> '/blog_model_php/index.php/posts',
-  '/post'=> '/blog_model_php/index.php/post',
-  '/posts-create'=>'/blog_model_php/index.php/posts-create'
+  '/posts/index'=> '/blog_model_php/index.php/posts/index',
+  '/posts/show'=> '/blog_model_php/index.php/posts/show',
+  '/posts/create'=>'/blog_model_php/index.php/posts/create'
 ];

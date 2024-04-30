@@ -17,4 +17,4 @@ authorize($post['user_id'] === $currentUser);
 
 
 
-require('views/post.view.php');
+require('views/posts/show.view.php');

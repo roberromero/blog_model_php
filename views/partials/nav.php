@@ -9,8 +9,8 @@
               <div class="ml-10 flex items-baseline space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a href="<?= $routes['/']?>" class="<?= urlIs($routes['/']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
-                <a href="<?= $routes['/posts']?>" class="<?= urlIs($routes['/posts']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Posts</a>
-                <a href="<?= $routes['/posts-create']?>" class="<?= urlIs($routes['/posts-create']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">New Post</a>
+                <a href="<?= $routes['/posts/index']?>" class="<?= urlIs($routes['/posts/index']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Posts</a>
+                <a href="<?= $routes['/posts/create']?>" class="<?= urlIs($routes['/posts/create']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">New Post</a>
                 <a href="<?= $routes['/contact']?>" class="<?= urlIs($routes['/contact']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">Contact</a>
                 <a href="<?= $routes['/about']?>" class="<?= urlIs($routes['/about']) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium">About</a>
               </div>
