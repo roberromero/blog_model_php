@@ -14,7 +14,7 @@
           <button type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Delete</button>
       </form>
       <br><br><br>
-      <a href="<?= $routes['/posts/index']?>" class="text-blue-700 underline font-bold">
+      <a href="/posts" class="text-blue-700 underline font-bold">
           Go back
       </a>
   </div>

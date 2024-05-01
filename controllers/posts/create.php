@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
             'description' => $_POST['description']
         ]);
 
-        header("Location: {$routes['/posts/index']}");
+        header("Location: /posts");
         die();
     }
 

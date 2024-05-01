@@ -6,7 +6,7 @@
     <?php 
     foreach($posts as $post): ?>
       <ul class="list-none">
-          <a href="<?= $routes['/posts/show'].'?id='.$post['id']?>" class="text-blue-500 hover:underline	">
+          <a href="<?= '/post?id='.$post['id']?>" class="text-blue-500 hover:underline	">
               <?= $post['id'] . " . " . $post['title'] . "<br>" ?>
           </a>
     </ul>
