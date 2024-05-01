@@ -1,7 +1,7 @@
 <?php 
-$config = require('config.php');
+use Core\Database;
 
-$heading = "My Notes";
+$config = require base_path('config.php');
 
 //Creating an instance using "Database class" and using variables stored in Database.php
 $database = new Database($config['database']);
@@ -9,4 +9,8 @@ $database = new Database($config['database']);
 $sql = "SELECT * FROM posts";
 $posts = $database->query($sql)->all();
 
-require('views/posts/index.view.php');
+view('views/posts/index.view.php', [
+  'posts' => $posts,
+  'heading' => 'My Notes',
+  'routes' => $routes
+]);

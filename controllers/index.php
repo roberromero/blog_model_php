@@ -1,4 +1,7 @@
 <?php 
 
-$heading = "Dashboard";
-require('views/index.view.php');
+view('views/index.view.php', [
+  'heading' => 'Dashboard',
+  'routes' => $routes
+]);
+

@@ -1,20 +1,35 @@
 <?php 
-$config = require('config.php');
-$heading = "POST";
-//Creating an instance using "Database class" and using variables stored in Database.php
+use Core\Database;
+$config = require base_path('config.php');
+
+
+$id = $_GET['id'];//GET method takes the paramether passed in the url ?id=x
 $database = new Database($config['database']);
-$id = $_GET['id'];
-$sql = "SELECT * FROM posts where id= :id";
-$post = $database->query($sql, ['id' => $id])->findOrFail();
-/*if(!$post){
-abort(Response::NOT_FOUND);//No need to add "not_found" const because it uses it by default 
-}*///No needed because I created findOrFail function that covers it
+
 $currentUser = 1;
-authorize($post['user_id'] === $currentUser);
+
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+    $post = $database->query('DELETE FROM posts WHERE id= :id', [
+        'id' => $_GET['id']
+    ])->findOrFail();
+    dd($post);
+    authorize($post['user_id'] === $currentUser);
+    header("Location: {$routes['/posts/index']}");
+
+}else{
+    //Creating an instance using "Database class" and using variables stored in Database.php
+    $sql = "SELECT * FROM posts where id= :id";
+    $post = $database->query($sql, ['id' => $id])->findOrFail();
+    authorize($post['user_id'] === $currentUser);
+    view('views/posts/show.view.php', [
+      'heading' => 'POST',
+      'post' => $post,
+      'routes' => $routes
+    ]);
+};
 
 
 
 
-
-
-require('views/posts/show.view.php');
