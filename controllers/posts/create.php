@@ -1,7 +1,8 @@
 <?php 
-require ('Validator.php');
-$config = require('config.php');
-$heading = "New Post"; 
+use Core\Validator;
+use Core\Database;
+
+$config = require base_path('config.php');
 $errors = [];
 
 
@@ -25,11 +26,15 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
             'description' => $_POST['description']
         ]);
 
-        header("Location: {$routes['/posts']}");
+        header("Location: {$routes['/posts/index']}");
         die();
     }
 
     }
     
 
-require('views/posts-create.view.php');
+view('views/posts/create.view.php', [
+    'errors' => $errors,
+    'routes' => $routes,
+    'heading' => 'New Post'
+]);
