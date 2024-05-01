@@ -10,9 +10,9 @@ $uri = parse_url($_SERVER["REQUEST_URI"])['path'];
 function routeToController($uri, $routes){
   $controllers = array_keys($routes);
   if(in_array($uri, $controllers)){
-    foreach($routes as $route){
-      if($uri === $route){
-        require(base_path('controllers'.$route.'.php'));
+    foreach($controllers as $controller){
+      if($uri === $controller){
+        require(base_path($routes[$controller]));
       }
     }
   }else{
