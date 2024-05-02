@@ -23,12 +23,11 @@ function authorize($condition, $status = Response::FORBIDDEN){
   }
 }
 
-
 //Returns the base path
 function base_path($path){
   
   return BASE_PATH . $path;
-  
+
 }
 
 
@@ -41,4 +40,12 @@ function view($path, $attributes= []){
   //requires the view using the base path
   require base_path($path);
 
+}
+
+
+function abort($statusCode = Response::NOT_FOUND){
+    global $routes;
+    http_response_code($statusCode);
+    view('views/'.$statusCode.'.php');
+    die();
 }

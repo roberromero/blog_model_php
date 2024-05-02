@@ -10,6 +10,7 @@
           <?= $post['description'] ?>
       </p><br>
       <form method="post">
+          <input type="hidden" value="DELETE" name="_request_method">
           <input type="hidden" name="id" value="<?= $post['id'] ?>">
           <button type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Delete</button>
       </form>

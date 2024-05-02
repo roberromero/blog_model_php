@@ -2,5 +2,5 @@
 
 view('views/about.view.php', [
   'heading' => 'About',
-  'routes' => $routes
+  // 'routes' => $routes
 ]);
