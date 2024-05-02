@@ -12,5 +12,5 @@ $posts = $database->query($sql)->all();
 view('views/posts/index.view.php', [
   'posts' => $posts,
   'heading' => 'My Notes',
-  'routes' => $routes
+  // 'routes' => $routes
 ]);

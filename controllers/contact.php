@@ -2,5 +2,5 @@
 
 view('views/contact.view.php', [
   'heading' => 'Contact',
-  'routes' => $routes
+  // 'routes' => $routes
 ]);

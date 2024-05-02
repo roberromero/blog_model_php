@@ -8,20 +8,17 @@ $database = new Database($config['database']);
 
 $currentUser = 1;
 
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    $sql = "SELECT * FROM posts where id= :id";
-    $post = $database->query($sql, ['id' => $id])->findOrFail();
-    authorize($post['user_id'] === $currentUser);
     $post = $database->query('DELETE FROM posts WHERE id= :id', [
         'id' => $_GET['id']
-    ]);
-    
-    header("Location: /posts");
-    exit();
+    ])->findOrFail();
+    dd($post);
+    authorize($post['user_id'] === $currentUser);
+    header("Location: {$routes['/posts/index']}");
 
 }else{
-    
     //Creating an instance using "Database class" and using variables stored in Database.php
     $sql = "SELECT * FROM posts where id= :id";
     $post = $database->query($sql, ['id' => $id])->findOrFail();
@@ -29,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     view('views/posts/show.view.php', [
       'heading' => 'POST',
       'post' => $post,
-      'routes' => $routes
+    //   'routes' => $routes
     ]);
 };
 
