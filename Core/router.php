@@ -2,8 +2,9 @@
 namespace Core;
 // use Core\Response;
 
-class Router{
-      public $routes = [];
+class Router
+{
+      protected $routes = [];
       public function route($uri, $method){
         foreach($this->routes as $route){
               if($uri === $route['uri'] && strtoupper($method) === $route['method']){
