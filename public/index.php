@@ -24,7 +24,6 @@ $router->route($uri, $requestMethod);
 
 
 
-
 // This function is not working, it should read all classes called in the project.
 // spl_autoload_register(function($class){ 
 //   dd($class);
