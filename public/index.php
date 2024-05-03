@@ -6,13 +6,17 @@ require (base_path('Core/Database.php'));
 require(base_path('Core/Response.php'));
 require(base_path('Core/Validator.php'));
 require(base_path('Core/Router.php'));
+require(base_path('Core/Container.php'));
+require(base_path('Core/App.php'));
+require(base_path('bootstrap.php'));
 
 $router = new \Core\Router();
-$routes = require(base_path('routes.php'));
-// //parse_url function to discard queries "?asas"
+//$router instance is accessible so "routes.php" can generate the routes using the instance $router
+require(base_path('routes.php'));
+//parse_url function to discard queries "?asas"
 $uri = parse_url($_SERVER["REQUEST_URI"])['path'];
 //if the request method is coming from a value (in this case from a form) 
-//initiate the variable if not the request method from server.
+//initiate the variable, if not the request method from server that can only be POST or GET
 $requestMethod = $_POST['_request_method'] ?? $_SERVER['REQUEST_METHOD'];
 $router->route($uri, $requestMethod);
 
@@ -21,10 +25,7 @@ $router->route($uri, $requestMethod);
 
 
 
-
-
-
-// This function is not working, it should read all classes called in the project.
+//**** */ This function is not working, it should read all classes called in the project.
 // spl_autoload_register(function($class){ 
 //   dd($class);
 // });
