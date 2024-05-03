@@ -10,6 +10,7 @@ use Core\Database;
 // $database = new Database($config['database']);
 
 // 'Core\Database' = Database::class = gives the full path
+//$database is an instance of the class Database
 $database = App::getContainer()->resolve(Database::class);
 
 $currentUser = 1;

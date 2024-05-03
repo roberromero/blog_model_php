@@ -3,7 +3,6 @@ namespace Core;
 
 class Container
 {
-
     protected $bindings = [];
     //bind= add
     public function bind($key, $resolver){
