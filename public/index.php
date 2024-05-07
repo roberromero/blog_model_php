@@ -10,6 +10,7 @@ require(base_path('Core/Container.php'));
 require(base_path('Core/App.php'));
 require(base_path('bootstrap.php'));
 
+session_start();
 $router = new \Core\Router();
 //$router instance is accessible so "routes.php" can generate the routes using the instance $router
 require(base_path('routes.php'));

@@ -23,8 +23,8 @@ if(!empty($errors)){
         ]);
 }
 $database->query('INSERT INTO posts(title, description, user_id) VALUES (:title, :description, 1)', [
-    'title' => $_POST['title'],
-    'description' => $_POST['description']
+    'title' => htmlspecialchars($_POST['title']),
+    'description' => htmlspecialchars($_POST['description'])
 ]);
 
 header("Location: /posts");

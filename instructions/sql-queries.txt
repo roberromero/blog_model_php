@@ -4,6 +4,11 @@ CREATE TABLE users (
     username VARCHAR(255) NOT NULL,
     admin BOOLEAN NOT NULL DEFAULT 0
 );
+ALTER TABLE users
+ADD COLUMN email VARCHAR(255) UNIQUE;
+ALTER TABLE users
+ADD COLUMN password VARCHAR(255);
+
 
 -- Create posts table
 CREATE TABLE posts (
