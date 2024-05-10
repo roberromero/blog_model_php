@@ -9,6 +9,11 @@ require(base_path('Core/Router.php'));
 require(base_path('Core/Container.php'));
 require(base_path('Core/App.php'));
 require(base_path('bootstrap.php'));
+require (base_path('Core/Middleware/Middleware.php'));
+require (base_path('Core/Middleware/Auth.php'));
+require (base_path('Core/Middleware/Guest.php'));
+require (base_path('Http/Forms/NewPostForm.php'));
+require (base_path('Http/Forms/LoginForm.php'));
 
 session_start();
 $router = new \Core\Router();

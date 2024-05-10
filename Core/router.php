@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+use Core\Middleware\Middleware;
 // use Core\Response;
 
 class Router
@@ -8,32 +9,43 @@ class Router
       public function route($uri, $method){
         foreach($this->routes as $route){
               if($uri === $route['uri'] && strtoupper($method) === $route['method']){
-                return require base_path($route['controller']);
+                // if($route['middleware']){//if route is not null, note that it is initiated as null line 30
+                //   $middleware = Middleware::MAP[$route['middleware']];
+                //   (new $middleware)->handle();
+                // }
+                Middleware::resolve($route['middleware']);
+                return require base_path("Http/controllers/{$route['controller']}");
               }
           }
+      }
+      public function only($key){
+        $this->routes[array_key_last($this->routes)]['middleware'] = $key; //Find the last object and add the middelware that is null by default
+        return $this;
       }
       public function add($uri, $controller, $method){
         //Really important two brakets in front of routes[] to add the routes in the array
         $this->routes[] = [
           'uri' => $uri,
           'controller' => $controller,
-          'method' => $method
+          'method' => $method,
+          'middleware' => null
         ];
+        return $this;
       }
       public function get($uri, $controller){
-        $this->add($uri, $controller, 'GET');
+        return $this->add($uri, $controller, 'GET');
       }
       public function post($uri, $controller){
-        $this->add($uri, $controller, 'POST');
+        return $this->add($uri, $controller, 'POST');
       }
       public function delete($uri, $controller){
-        $this->add($uri, $controller, 'DELETE');
+        return $this->add($uri, $controller, 'DELETE');
       }
       public function patch($uri, $controller){
-        $this->add($uri, $controller, 'PATCH');
+        return $this->add($uri, $controller, 'PATCH');
       }
       public function put($uri, $controller){
-        $this->add($uri, $controller, 'PUT');
+        return $this->add($uri, $controller, 'PUT');
       }
       
 }

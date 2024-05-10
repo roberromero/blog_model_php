@@ -1,17 +1,19 @@
 <?php
-$router->get('/', 'controllers/index.php');
-$router->get('/contact', 'controllers/contact.php');
-$router->get('/about', 'controllers/about.php');
+$router->get('/', 'index.php');
+$router->get('/contact', 'contact.php');
+$router->get('/about', 'about.php');
 
-$router->get('/posts', 'controllers/posts/index.php');
-$router->get('/posts/create', 'controllers/posts/create.php');
-$router->post('/posts/store', 'controllers/posts/store.php');
+$router->get('/posts', 'posts/index.php');
+$router->get('/posts/create', 'posts/create.php')->only('auth');
+$router->post('/posts/store', 'posts/store.php')->only('auth');
+$router->get('/post', 'posts/show.php')->only('auth');
+$router->delete('/post/destroy', 'posts/destroy.php')->only('auth');
+$router->get('/post/edit', 'posts/edit.php')->only('auth');
+$router->patch('/post/update', 'posts/update.php')->only('auth');
 
-$router->get('/post', 'controllers/posts/show.php');
-$router->delete('/post/destroy', 'controllers/posts/destroy.php');
-$router->get('/post/edit', 'controllers/posts/edit.php');
-$router->patch('/post/update', 'controllers/posts/update.php');
+$router->get('/register/index', 'register/index.php')->only('guest');
+$router->post('/register/create', 'register/create.php')->only('guest');
 
-$router->get('/register/index', 'controllers/register/index.php');
-$router->post('/register/index/submit', 'controllers/register/index-submit.php');
-$router->get('/register/login', 'controllers/register/login.php');
+$router->get('/login', 'sessions/login.php')->only('guest');
+$router->post('/sessions', 'sessions/store.php')->only('guest');
+$router->delete('/logout', 'sessions/logout.php')->only('auth');

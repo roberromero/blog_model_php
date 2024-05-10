@@ -42,13 +42,14 @@ private $statement;
 
   public function all(){
 
-    return $this->statement->fetchAll();
+    return $this->statement->fetchAll(PDO::FETCH_ASSOC);//If FETCH ARRAY NOT ADDED
+    //PDO default fetch mode is on, which is typically fetching results as both indexed and associative arrays.
     
   }
 
   public function find(){
 
-    return $this->statement->fetch();
+    return $this->statement->fetch(PDO::FETCH_ASSOC);
 
   }
 
