@@ -50,21 +50,6 @@ function abort($statusCode = Response::NOT_FOUND){
     die();
 }
 
-function login($params){
-  $_SESSION['user'] = [
-    'username' => $params['username'],
-    'email' => $params['email']
-];
-  session_regenerate_id(true);
-}
-
-function logout(){
-  $_SESSION = []; // this is also valid = $_SESSION = array();
-  session_destroy();
-
-  $params = session_get_cookie_params();
-  setcookie('PHPSESSID', '', time() - 3600, $params['path'],$params['domain'], $params['secure'], $params['httponly']);
-}
 
 function redirect($uri){
   header("Location: {$uri}");

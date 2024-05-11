@@ -1,27 +1,23 @@
 <?php 
-use Core\App;
-use Core\Database;
+
+use Core\Authenticator;
 use Http\Forms\LoginForm;
 
 $emailOrUsername = $_POST['emailOrUsername'];
 $password = $_POST['password'];
-
-$database = App::getContainer()->resolve(Database::class);
-$result = $database->query('SELECT * FROM users WHERE email=:emailOrUsername OR username=:emailOrUsername', [
-    'emailOrUsername' => $emailOrUsername
-    ])->find();
+$isErrorForm = true;
 
 $form = new LoginForm();
-if(!$form->validate($password, $result)){//redirect with error if it returns false
-    return view('views/sessions/login.view.php', [
-        'errors' => $form->getErrors()
-    ]);
-}
+if($form->validate($emailOrUsername, $password)){//if it returns true, continues
+    $auth = new Authenticator();
+    $auth->attempt($emailOrUsername, $password);
 
-//I need creating Authorization class**////////////////////
-if(!password_verify($password, $result['password'])){
-    $errors['password'] = 'Password not valid.';
+    if(empty($auth->getErrors())){
+    $auth->login();
+    redirect('/');
+    }
+    $isErrorForm = false;
 }
-login($result);
-redirect('/');
-//***/////////////////////// */
+return view('views/sessions/login.view.php', [
+    'errors' => $isErrorForm ? $form->getErrors() : $auth->getErrors()
+]);

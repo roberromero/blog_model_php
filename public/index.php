@@ -14,7 +14,7 @@ require (base_path('Core/Middleware/Auth.php'));
 require (base_path('Core/Middleware/Guest.php'));
 require (base_path('Http/Forms/NewPostForm.php'));
 require (base_path('Http/Forms/LoginForm.php'));
-
+require(base_path('Core/Authenticator.php'));
 session_start();
 $router = new \Core\Router();
 //$router instance is accessible so "routes.php" can generate the routes using the instance $router

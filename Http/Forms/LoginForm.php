@@ -6,20 +6,18 @@ class LoginForm
 {
     protected $errors = [];
 
-    public function validate($password, $result)
+    public function validate($emailOrUsername,$password)
     {
         $isValid = true;
-        // dd($result);
         if(!Validator::string($password, 3, 255)){
-            $this->errors['password'] = 'Password needs to be longer than 3 charaters.';
+            $this->errors['password'] = 'Password needs to be longer than 3 charaters long.';
             $isValid = false;
         }
-        if(!$result){
-            $this->errors['emailOrUsername'] = 'Email address or Username not valid.';
-            $isValid = false;
+        if(!Validator::string($emailOrUsername, 3, 255)){
+            $this->errors['emailOrUsername'] = 'Email or username must be longer than 3 characters long.';
+            return false;
         }
-        
-        return $isValid;
+        return $isValid;        ;
     }
 
     public function getErrors(){
