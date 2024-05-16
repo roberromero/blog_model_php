@@ -2,6 +2,7 @@
 namespace Core;
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 class Authenticator
 {
@@ -16,14 +17,15 @@ class Authenticator
         $this->user = $result;
         if(!$result){
             $this->errors['emailOrUsername'] = 'Email address or Username not valid.';
-            return false;
+            return $this;
         }
         
         if(!password_verify($password, $result['password'])){
             $this->errors['password'] = 'Password not valid.';
-            return false;
+            return $this;
         }
-        return true;
+        self::login();
+        return $this;
     }
 
     public function getErrors(){
@@ -31,19 +33,18 @@ class Authenticator
     }
 
     public function login(){
-        $_SESSION['user'] = [
-          'username' => $this->user['username'],
-          'email' => $this->user['email']
-      ];
+       // $_SESSION['user'] = [
+        //  'username' => $this->user['username'],
+       //   'email' => $this->user['email']
+     // ];
+        Session::put('user', ['username' => $this->user['username']]);
+        Session::put('email', ['username' => $this->user['email']]);
+
         session_regenerate_id(true);
       }
 
       public static function logout(){
-        $_SESSION = []; // this is also valid = $_SESSION = array();
-        session_destroy();
-      
-        $params = session_get_cookie_params();
-        setcookie('PHPSESSID', '', time() - 3600, $params['path'],$params['domain'], $params['secure'], $params['httponly']);
+        Session::flush();
       }
 
 }

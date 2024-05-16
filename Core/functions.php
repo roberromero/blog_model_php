@@ -55,3 +55,8 @@ function redirect($uri){
   header("Location: {$uri}");
   die();
 }
+
+function old($key, $default = '')
+{
+    return Core\Session::get('old')[$key] ?? $default;
+}

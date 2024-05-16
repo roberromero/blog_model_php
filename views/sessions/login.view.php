@@ -7,13 +7,12 @@
       <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
       <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Log in</h2>
     </div>
-
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="/sessions" method="POST">
         <div>
           <label for="emailOrUsername" class="block text-sm font-medium leading-6 text-gray-900">Email address or Username</label>
           <div class="mt-2">
-            <input id="emailOrUsername" name="emailOrUsername" value="<?= $_POST['emailOrUsername'] ?? '' ?>" type="emailOrUsername" autocomplete="emailOrUsername" class="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input id="emailOrUsername" name="emailOrUsername" value="<?= old('emailOrUsername') ?>" type="emailOrUsername" autocomplete="emailOrUsername" class="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             <?php if(isset($errors['emailOrUsername'])): ?>
             <span class="text-red-500 mt-3 text-sm leading-6"><?= $errors['emailOrUsername'] ?? '' ?></span>
             <?php endif; ?>

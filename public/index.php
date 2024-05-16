@@ -1,5 +1,9 @@
 <?php 
 //__DIR__ finds the current directory and /../ goes up a level which is the root of the project
+
+use Core\Session;
+use Core\ValidationException;
+
 const BASE_PATH = __DIR__ . '/../';
 require(BASE_PATH . 'Core/functions.php');
 //5-17 I had this code that was substituted by the following:
@@ -18,8 +22,19 @@ $uri = parse_url($_SERVER["REQUEST_URI"])['path'];
 //if the request method is coming from a value (in this case from a form) 
 //initiate the variable, if not the request method from server that can only be POST or GET
 $requestMethod = $_POST['_request_method'] ?? $_SERVER['REQUEST_METHOD'];
-$router->route($uri, $requestMethod);
 
+try{
+
+    $router->route($uri, $requestMethod);
+
+}catch(ValidationException $exception){
+    Session::flash('errors', $exception->errors());
+    Session::flash('old', $exception->oldFormData());
+    redirect($router->previousUrl());
+}
+
+//clean the errors
+Session::unflash();
 
 
 

@@ -47,6 +47,10 @@ class Router
       public function put($uri, $controller){
         return $this->add($uri, $controller, 'PUT');
       }
+
+      public function previousUrl(){
+        return $_SERVER['HTTP_REFERER'];
+      }
       
 }
 
