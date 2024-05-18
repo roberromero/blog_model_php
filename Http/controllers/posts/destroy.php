@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Session;
 
 // use Core\Database;
 
@@ -13,13 +14,18 @@ use Core\Database;
 //$database is an instance of the class Database
 $database = App::getContainer()->resolve(Database::class);
 
-$currentUser = 1;
-
-$post = $database->query("SELECT * FROM posts where id= :id", [
+$username = Session::get('user')['username'];
+$sql= $sql = '
+SELECT posts.*, users.username 
+FROM posts 
+JOIN users ON posts.user_id = users.id 
+WHERE posts.id = :id
+';
+$post = $database->query($sql, [
     'id' => $_POST['id']
     ])->findOrFail();
     
-authorize($post['user_id'] === $currentUser);
+authorize($post['username'] === $username);
 
 $post = $database->query('DELETE FROM posts WHERE id= :id', [
     'id' => $_POST['id']

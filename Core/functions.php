@@ -60,3 +60,8 @@ function old($key, $default = '')
 {
     return Core\Session::get('old')[$key] ?? $default;
 }
+
+function formatTimeStamp($timestamp)
+{
+    return htmlspecialchars((new DateTime($timestamp))->format('d/m/Y'));
+}

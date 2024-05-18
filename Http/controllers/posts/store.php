@@ -2,7 +2,7 @@
 use Http\Forms\NewPostForm;
 use Core\Database;
 use Core\App;
-
+use Core\Session;
 $title = $_POST['title'];
 $description = $_POST['description'];
 $database = App::getContainer()->resolve(Database::class);
@@ -16,10 +16,18 @@ if(!$form->validate($title, $description)){
             'heading' => 'New Post'
         ]);
 }
-$database->query('INSERT INTO posts(title, description, user_id) VALUES (:title, :description, 1)', [
+$database2 = App::getContainer()->resolve(Database::class);
+$sql = 'SELECT id FROM users WHERE username= :username';
+$userId = $database2->query($sql, ['username'=> Session::get('user')['username']])->find();
+//coalescing operator to simplify the extraction of user_id from the array
+$userId = $userId['id'] ?? null;
+
+$result = $database->query('INSERT INTO posts(title, description, user_id) VALUES (:title, :description, :user_id)', [
     'title' => htmlspecialchars($title),
-    'description' => htmlspecialchars($description)
+    'description' => htmlspecialchars($description),
+    'user_id' => $userId
 ]);
+
 redirect('/posts');
 
 

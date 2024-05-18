@@ -42,6 +42,10 @@ class Authenticator
 
         session_regenerate_id(true);
       }
+      public function setUser(array $user)
+      {
+          $this->user = array_merge($this->user, $user);
+      }
 
       public static function logout(){
         Session::flush();

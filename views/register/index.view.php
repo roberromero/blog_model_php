@@ -11,6 +11,7 @@
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="/register/create" method="POST">
       <div>
+          <!--USERNAME-->
           <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
           <div class="mt-2">
             <input id="username" name="username" type="username" autocomplete="username" value="<?= $_POST['username'] ?? '' ?>" class="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -19,6 +20,7 @@
             <?php endif; ?>
           </div>
         </div>
+        <!--EMAIL-->
         <div>
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
           <div class="mt-2">
@@ -28,7 +30,17 @@
             <?php endif; ?>
           </div>
         </div>
-
+        <!--PROFESSION-->
+        <div>
+          <label for="profession" class="block text-sm font-medium leading-6 text-gray-900">Profession</label>
+          <div class="mt-2">
+            <input id="profession" name="profession" type="profession" autocomplete="profession" value="<?= $_POST['profession'] ?? '' ?>" class="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <?php if(isset($errors['profession'])): ?>
+            <span class="text-red-500 mt-3 text-sm leading-6"><?= $errors['profession'] ?? '' ?></span>
+            <?php endif; ?>
+          </div>
+        </div>
+        <!--PASSWORD-->
         <div>
           <div class="flex items-center justify-between">
             <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>

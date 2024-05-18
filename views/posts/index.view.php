@@ -15,8 +15,8 @@
         </div>
       </div>
       <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-        <p class="text-sm leading-6 text-gray-900">Designer</p>
-        <p class="mt-1 text-xs leading-5 text-gray-500">Created 17/05/2024</time></p>
+        <p class="text-sm leading-6 text-gray-900"><?= $post['profession'] ?></p>
+        <p class="mt-1 text-xs leading-5 text-gray-500">Created <?= formatTimeStamp($post["created_at"]) ?></time></p>
       </div>
     </li>
     </a>
