@@ -8,11 +8,11 @@ $database = new Database($config['database']);
 //$sql = "SELECT * FROM posts";
 $sql = "SELECT posts.*, 
                users.username, 
-               users.profession
+               users.profession,
+               users.avatar
         FROM posts
         INNER JOIN users ON posts.user_id = users.id;";
 $posts = $database->query($sql)->all();
-
 view('views/posts/index.view.php', [
   'posts' => $posts,
   'heading' => 'Posts'

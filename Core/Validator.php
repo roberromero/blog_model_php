@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 
+use function PHPUnit\Framework\isEmpty;
 
 class Validator
 {   
@@ -27,4 +28,15 @@ class Validator
         ])->find();
     }
 
+    public static function doesFileExist($fileName){
+        return !empty($fileName);
+    }
+    public static function isValidFormat($fileType){
+        $fileType = strtolower(substr(strrchr($fileType, '/'), 1));
+        $allowedTypes = ['png', 'jpeg', 'jpg'];
+        return in_array($fileType, $allowedTypes);
+    }
+    public static function isSizePermitted($fileSize){
+        return $fileSize < 400800;//200kb=204800
+    }
 }
