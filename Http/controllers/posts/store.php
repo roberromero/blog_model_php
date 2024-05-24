@@ -16,6 +16,7 @@ if(!$form->validate($title, $description)){
             'heading' => 'New Post'
         ]);
 }
+//"Database::class" is equivalent to the string 'Core\Database'
 $database2 = App::getContainer()->resolve(Database::class);
 $sql = 'SELECT id FROM users WHERE username= :username';
 $userId = $database2->query($sql, ['username'=> Session::get('user')['username']])->find();

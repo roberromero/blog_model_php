@@ -4,7 +4,9 @@
 use Core\Session;
 use Core\ValidationException;
 
+const URL_PATH = '/';
 const BASE_PATH = __DIR__ . '/../';
+
 require BASE_PATH . '/vendor/autoload.php';
 //--- Register Autoloader without using composer autoloader ------//
 /*spl_autoload_register(function ($class) {
@@ -14,6 +16,7 @@ require BASE_PATH . '/vendor/autoload.php';
 //----//
 require(BASE_PATH . 'Core/functions.php');
 require(base_path('bootstrap.php'));
+//Allows to use Session global variable
 session_start();
 $router = new \Core\Router();
 //$router instance is accessible so "routes.php" can generate the routes using the instance $router

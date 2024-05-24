@@ -1,7 +1,9 @@
 <?php
 
 use Core\Response;
-
+use Core\Database;
+use Core\App;
+use Core\Session;
 //It shows and stops execution
 function dd($value){
   echo "<pre>";
@@ -64,4 +66,22 @@ function old($key, $default = '')
 function formatTimeStamp($timestamp)
 {
     return htmlspecialchars((new DateTime($timestamp))->format('d/m/Y'));
+}
+
+function getImageProfile()
+{
+  $database = App::getContainer()->resolve(Database::class);
+  $result = $database->query('SELECT avatar FROM users WHERE email = :email', [
+    'email'=> Session::get('email')['username']
+    ])->find();
+  return URL_PATH . 'images/' . $result['avatar'];
+}
+
+function isUserLoggedIn($key) 
+{
+  return Session::get($key);
+}
+
+function sessionDetails($ref,$key){
+  return Session::get($ref)[$key];
 }
